@@ -1,0 +1,20 @@
+name: tg-bot-accept-applications
+services:
+  woman-tg-bot:
+    image: ${IMAGE_NAME}
+    hostname: tg-bot-accept-applications
+    container_name: tg-bot-accept-applications
+    ports:
+      - "8081:8081"
+    networks:
+      - vps-network
+    env_file:
+      - ../local.env
+    volumes:
+      - ${FILES_STORAGE_DIRECTORY}:/opt/tg-bot-accept-applications/files_storage_directory
+
+networks:
+  vps-network:
+    name: vps-network
+    driver: bridge
+

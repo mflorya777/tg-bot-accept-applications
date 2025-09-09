@@ -1,0 +1,23 @@
+services:
+  woman-tg-bot:
+    build:
+      context: ..
+      dockerfile: compose/Dockerfile
+      target: production
+    image: ${IMAGE_NAME}
+    hostname: tg-bot-accept-applications-${ENV}
+    container_name: tg-bot-accept-applications-${ENV}
+    ports:
+      - "8081:8081"
+    networks:
+      - vps-network
+    env_file:
+      - ../prod.env
+    volumes:
+      - ${PWD}:/opt/app
+      - ${PWD}/files_storage_directory:/opt/tg-bot-accept-applications/files_storage_directory
+
+networks:
+  vps-network:
+    name: vps-network
+    driver: bridge
